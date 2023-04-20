@@ -54,7 +54,7 @@ formElement.addEventListener("submit", function (event) {
     let department = document.getElementById("depInput").value
     let level = document.getElementById("levInput").value
     let image = document.getElementById("imgInput").value
-    const elementNetSalary = Employ.calculateNetSalary(level);
+    const elementNetSalary = Employ.calculateNetSalary();
     let myObject = new Employ(id, firstName, lastName, department, level, image);
     Employ.employList.push(myObject);
     console.log(Employ.employList);
