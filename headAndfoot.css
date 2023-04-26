@@ -16,24 +16,9 @@ main{
     justify-content: start;
     align-items: start;
     flex-direction: row;
-
+    padding-top: 15%;
 }
-table{
-    border-radius: 30px;
-   
- background-color: #4ffbdf;
- 
- width: 100%;
- height: 1000%;
 
-    border-collapse: collapse;
-    border-spacing: 0;
-  
-  }
-  td, th {
-    border: 1px solid black;
-    padding: 10px;
-  }
 
 footer{
     display: flex;
@@ -61,24 +46,52 @@ body{
  padding: 0% 5% 0% 5%;
 }
 .inputStyle{
-position: relative;
+
     
     width: 50%;
     display: flex;
     justify-items: flex-end;
     align-items: stretch;
     flex-direction: column;
+    flex-wrap: wrap;
 
 }
- 
-.inputStyle form{
+
+
+
+.card {  
     display: flex;
-justify-self: start;
-   align-content: stretch;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 200px;
+    max-height: 460px  ;
+    margin-left: 5%;
+    width: 25 %;
+    height:25%;
+   
+    border-radius: 15%;
+    border: 2 px solid black;
+background-color: #13c3c3;
+ }
+ .card img{
+    width: 100%;
+    height: 50%;
+    border-radius: 15%;
+ }
+ footer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-content: end;
+  bottom: 0;
+    background-color: #00c2a8;
+   
 }
-
-.admin{
-    height: 40px;
-    width: 80px;
-    background-color: black;
+.employAll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
