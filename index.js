@@ -115,15 +115,15 @@ Employ.prototype.render = function () {
 Employ.employList.forEach(function (employ) {
 
     employ.render();
-
-
+   
+    
 
 })
 
 function saveData() {
     let data = JSON.stringify(Employ.employList);
     localStorage.setItem('employ', data);
-
+    
 }
 saveData()
 function getData() {
