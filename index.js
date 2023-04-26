@@ -44,9 +44,9 @@ Employ.employList = [
 
 
 ];
-
-let formElement = document.querySelector("form");
-formElement.addEventListener("submit", function (event) {
+const form = document.getElementById("form");
+form.addEventListener('submit', submitHandler)
+function submitHandler(event) {
     event.preventDefault()
     let id = Math.floor(Math.random() * 9000) + 1006;
     let firstName = document.getElementById("nameInput").value
@@ -54,67 +54,81 @@ formElement.addEventListener("submit", function (event) {
     let department = document.getElementById("depInput").value
     let level = document.getElementById("levInput").value
     let image = document.getElementById("imgInput").value
-    const elementNetSalary = Employ.calculateNetSalary();
+
     let myObject = new Employ(id, firstName, lastName, department, level, image);
     Employ.employList.push(myObject);
-    console.log(Employ.employList);
     saveData(Employ.employList);
- 
+    myObject.render();
+    console.log('hello world')
+}
+const listAll = document.createElement('div');
+listAll.classList.add('employAll');
+const main = document.getElementById('main');
 
-
-
-});
 Employ.prototype.render = function () {
-    const container = document.createElement('main');
+
+
+
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+
     
-    container.classList.add('employ-container');
-    container.style.width = '40px';
-    container.style.height = '40px';
-    document.body.appendChild(container);
+
+    
     const image = document.createElement('img');
     image.src = this.image;
-    image.style.height = '40px';
-    image.style.width = '40px';
-    container.appendChild(image);
+    
+
+
     const id = document.createElement('p');
     id.textContent = `ID: ${this.id}`;
-    container.appendChild(id);
+
 
     const fullName = document.createElement('p');
     fullName.textContent = `Name: ${this.fullName}`;
-    container.appendChild(fullName);
+
 
     const department = document.createElement('p');
     department.textContent = `Department: ${this.department}`;
-    container.appendChild(department);
+
 
     const level = document.createElement('p');
     level.textContent = `Level: ${this.level}`;
-    container.appendChild(level);
+
 
     const elementNetSalary = this.calculateNetSalary(level);
     const netSalary = document.createElement('p');
-    netSalary.textContent = `Net Salary: ${Math.round(elementNetSalary) }`;
-    container.appendChild(netSalary);
+    netSalary.textContent = `Net Salary: ${Math.round(elementNetSalary)}`;
+
+    card.appendChild(image);
+    card.appendChild(id);
+    card.appendChild(fullName);
+    card.appendChild(department);
+    card.appendChild(level);
+    card.appendChild(netSalary);
+    listAll.appendChild(card)
+    main.appendChild(listAll);
 }
 
 
 Employ.employList.forEach(function (employ) {
-    
+
     employ.render();
-      
-    
+
+
 
 })
 
 function saveData() {
     let data = JSON.stringify(Employ.employList);
     localStorage.setItem('employ', data);
-  }
-   saveData()
+
+}
+saveData()
 function getData() {
     let data = localStorage.getItem('employ');
     let x = JSON.parse(data);
     return x;
-} 
+}
 console.log(localStorage.getItem('employ'));
