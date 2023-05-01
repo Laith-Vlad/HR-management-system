@@ -57,8 +57,8 @@ function submitHandler(event) {
 
     let myObject = new Employ(id, firstName, lastName, department, level, image);
     Employ.employList.push(myObject);
-    saveData(Employ.employList);
     myObject.render();
+    saveData(Employ.employList);
     console.log('hello world')
 }
 const listAll = document.createElement('div');
@@ -131,4 +131,5 @@ function getData() {
     let x = JSON.parse(data);
     return x;
 }
+getData()
 console.log(localStorage.getItem('employ'));
