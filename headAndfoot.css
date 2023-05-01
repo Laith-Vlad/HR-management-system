@@ -68,8 +68,8 @@ body{
     max-width: 200px;
     max-height: 460px  ;
     margin-left: 5%;
-    width: 25 %;
-    height:25%;
+    width: 25%;
+    height : 25% ;
    
     border-radius: 15%;
     border: 2 px solid black;
@@ -95,3 +95,17 @@ background-color: #13c3c3;
     align-items: center;
     flex-wrap: wrap;
 }
+.employTable{
+ height: 300px;
+ width: 500px;
+ 
+  
+    border-width: 50px;
+    border: black;
+    border-color: black;
+    background-color: wheat;
+}
+/* .employRow{
+display: flex;
+ justify-content: space-evenly;
+} */
