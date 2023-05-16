@@ -1,10 +1,11 @@
-function Employ(id, firstName, lastName, department, level, image) {
+function Employ(id, fullName, department, level, image) {
     this.id = id;
-    this.fullName = firstName + ' ' + lastName;
+    this.fullName = fullName;
     this.department = department;
     this.level = level;
     this.image = image;
     this.netSalary = this.calculateNetSalary;
+    Employ.employList.push(this);
 }
 Employ.employList = [];
 Employ.prototype.calculateNetSalary = function () {
@@ -27,39 +28,42 @@ Employ.prototype.calculateNetSalary = function () {
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-Employ.employList = [
-    new Employ(1000, 'Ghazi', 'Samer', 'Administration', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Ghazi.jpg'),
-
-    new Employ(1001, 'Lana', 'Ali', 'Finance', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Lana.jpg'),
-
-    new Employ(1002, 'Tamara', 'Ayoub', 'Marketing', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Tamara.jpg'),
-
-    new Employ(1003, 'Safi', 'Walid', 'Administration', 'Mid-Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Safi.jpg'),
-
-    new Employ(1004, 'Omar', 'Zaid', 'Development', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Omar.jpg'),
-
-    new Employ(1005, 'Rana', 'Saleh', 'Development', 'Junior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Rana.jpg'),
-
-    new Employ(1006, 'Hadi', 'Ahmad', 'Finance', 'Mid-Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Hadi.jpg')
 
 
-];
+    new Employ(1000, 'Ghazi Samer', 'Administration', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Ghazi.jpg'),
+
+    new Employ(1001, 'Lana Ali', 'Finance', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Lana.jpg'),
+
+    new Employ(1002, 'Tamara Ayoub', 'Marketing', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Tamara.jpg'),
+
+    new Employ(1003, 'Safi Walid', 'Administration', 'Mid-Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Safi.jpg'),
+
+    new Employ(1004, 'Omar Zaid', 'Development', 'Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Omar.jpg'),
+
+    new Employ(1005, 'Rana Saleh', 'Development', 'Junior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Rana.jpg'),
+
+    new Employ(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', 'https://github.com/LTUC/amman-prep-d13/raw/main/Class-08/lab/assets/Hadi.jpg')
+
+
+
+console.log(Employ.employList, "ssss")
+
 const form = document.getElementById("form");
 form.addEventListener('submit', submitHandler)
 function submitHandler(event) {
     event.preventDefault()
     let id = Math.floor(Math.random() * 9000) + 1006;
-    let firstName = document.getElementById("nameInput").value
-    let lastName = document.getElementById("lastName").value
+    let fullName = document.getElementById("fullName").value
+    
     let department = document.getElementById("depInput").value
     let level = document.getElementById("levInput").value
     let image = document.getElementById("imgInput").value
 
-    let myObject = new Employ(id, firstName, lastName, department, level, image);
-    Employ.employList.push(myObject);
+    let myObject = new Employ(id, fullName, department, level, image);
+    // Employ.employList.push(myObject);
     myObject.render();
     saveData(Employ.employList);
-    console.log('hello world')
+    console.log(Employ.employList);
 }
 const listAll = document.createElement('div');
 listAll.classList.add('employAll');
@@ -73,12 +77,12 @@ Employ.prototype.render = function () {
     card.classList.add('card');
 
 
-    
 
-    
+
+
     const image = document.createElement('img');
     image.src = this.image;
-    
+
 
 
     const id = document.createElement('p');
@@ -111,25 +115,34 @@ Employ.prototype.render = function () {
     main.appendChild(listAll);
 }
 
-
-Employ.employList.forEach(function (employ) {
-
-    employ.render();
-   
-    
-
-})
-
 function saveData() {
     let data = JSON.stringify(Employ.employList);
     localStorage.setItem('employ', data);
-    
+
 }
-saveData()
+
+
 function getData() {
     let data = localStorage.getItem('employ');
     let x = JSON.parse(data);
-    return x;
+    console.log(x ,"asdas")
+    if (x !== null) {
+        Employ.employList = [];
+        x.map(function (dat) {
+            new Employ(dat.id, dat.fullName, dat.department, dat.level, dat.image)
+
+        })
+    }
+
+
+
+
 }
 getData()
-console.log(localStorage.getItem('employ'));
+console.log(Employ.employList)
+Employ.employList.forEach(function (employ) {
+    employ.render();
+});
+
+
+// console.log(getData());
